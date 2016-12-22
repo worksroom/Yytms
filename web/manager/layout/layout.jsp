@@ -29,7 +29,6 @@
         body, html {
             height: 100%;
         }
-
         body {
             padding: 0px;
             margin: 0;
@@ -159,9 +158,6 @@
             margin-right: 6px;
         }
 
-        .l-dialog-content {
-            overflow-y: hidden
-        }
     </style>
     <style type="text/css">
         /* 菜单列表 */

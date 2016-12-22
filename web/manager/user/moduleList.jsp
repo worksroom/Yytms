@@ -44,25 +44,9 @@
                         tree: {columnName: 'name'},
                         checkbox: false,
                         autoCheckChildren: false,
-                        toolbar: {
-                            items: [
-                                {text: '增加子节点', click: addData, icon: 'add'},
-                                {line: true},
-                                {text: '添加按钮', click: addBtnData, icon: 'add'},
-                                {line: true},
-                                {text: '增加同级节点', click: appendToCurrentNodeDown, icon: 'add'},
-                                {line: true},
-                                {text: '修改', click: updateData, icon: 'modify'},
-                                {line: true},
-                                {text: '升级', click: upgrade, icon: 'up'},
-                                {line: true},
-                                {text: '降级', click: demotion, icon: 'down'},
-                                {line: true},
-                                {text: '伸/缩节点', click: toggle, icon: 'communication'},
-                                {line: true},
-                                {text: '删除', click: delData, img: 'resources/ligerUI/skins/icons/delete.gif'}
-                            ]
-                        }
+                        width: '100%',
+                        height: '100%',
+                        toolbar: <jsp:include page="../layout/function.jsp" flush="true"/>
                     }
             );
         });
@@ -150,7 +134,7 @@
         }
 
 
-        function appendToCurrentNodeDown() {
+        function appendToCurrentNodeDownData() {
             var selectRow = manager.getSelectedRow();
             if (!selectRow) return;
 
@@ -219,22 +203,22 @@
             });
         }
 
-        function upgrade() {
+        function upgradeData() {
             var selectRow = manager.getSelectedRow();
             manager.upgrade(selectRow);
         }
 
-        function demotion() {
+        function demotionData() {
             var row = manager.getSelected();
             manager.demotion(row);
         }
 
-        function toggle() {
+        function toggleData() {
             var row = manager.getSelected();
             manager.toggle(row);
         }
 
-        function delData(){
+        function deleteData(){
             var row = manager.getSelectedRow();
             if (!manager.isLeaf(row)) {
                 tip('父节点不能删除');
@@ -262,7 +246,7 @@
 
     </script>
 </head>
-<body style="padding:0px">
+<body style="overflow:hidden">
     <div id="maingrid"></div>
 </body>
 </html>

@@ -1,18 +1,16 @@
-# Yytms
-1¡¢ÔËĞĞ»·¾³
+1ã€è¿è¡Œç¯å¢ƒ
 	JDK1.7+
 	MYSQL 5.0+
 	Tomcat7+
-2¡¢¿ª·¢»·¾³
+2ã€å¼€å‘ç¯å¢ƒ
 	Gradle2.3+
 	IntelliJIDEA 14.0.2
 	Navicat for MySQL
-3¡¢°²×°
-	´´½¨Êı¾İ¿â£¬Ãû³Ælakeside£¬×Ö·û¼¯UTF-8
-	µ¼Èë±í½á¹¹ºÍ³õÊ¼»¯Êı¾İ£¬Yytms/doc/database.sql
-	°²×°JDK
-	°²×°Tomcat
-	½«±àÒëºóµÄYytmsÄ¿Â¼¿½±´µ½tomcat/webappsÄ¿Â¼ÏÂ
-4¡¢ÔËĞĞ
-	Æô¶¯tomcat Ö´ĞĞÆô¶¯½Å±¾startup.sh
-	Í¨¹ıä¯ÀÀÆ÷·ÃÎÊhttp://ip:8080/lakeside/
+3ã€å®‰è£…
+	åˆ›å»ºæ•°æ®åº“ï¼Œåç§°lakesideï¼Œå­—ç¬¦é›†UTF-8
+	å¯¼å…¥è¡¨ç»“æ„å’Œåˆå§‹åŒ–æ•°æ®ï¼ŒYytms/doc/database.sql
+	å®‰è£…JDK
+	å®‰è£…Tomcat å°†ç¼–è¯‘åçš„Yytmsç›®å½•æ‹·è´åˆ°tomcat/webappsç›®å½•ä¸‹
+4ã€è¿è¡Œ
+	å¯åŠ¨tomcat æ‰§è¡Œå¯åŠ¨è„šæœ¬startup.sh
+	é€šè¿‡æµè§ˆå™¨è®¿é—®http://ip:8080/lakeside/

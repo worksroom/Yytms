@@ -93,7 +93,7 @@
 
 </head>
 <body style="padding:0px;">
-<div style="width:98%; height:500px; border:1px solid #ccc; overflow:auto; clear:both;">
+<div style="width:98%; border:1px solid #ccc; overflow:auto; clear:both;">
     <ul id="tree1" style="margin-top: 3px;"/>
     <div class="l-tree-loading" style="display: block;"></div>
 </div>

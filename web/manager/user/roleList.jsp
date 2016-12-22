@@ -198,10 +198,12 @@
 
 
             $.ligerDialog.open({
-                url: 'manager/user/setModule.jsp?roleid='+roleid, height: 500, width: 300, buttons: [{
+                url: 'manager/user/setModule.jsp?roleid=' + roleid,
+                height: 500,
+                width: 300,
+                buttons: [{
                     text: '确定', onclick: function (item, dialog) {
                         var ids = dialog.frame.getChecked();
-
                         var data = {
                             "ids": ids,
                             "roleid": roleid
@@ -209,16 +211,16 @@
                         $.ajax({
                             cache: true,
                             type: "POST",
-                            url:"manager/sysRole.do?method=setModule",
+                            url: "manager/sysRole.do?method=setModule",
                             data: data,
                             async: false,
-                            error: function(data) {
+                            error: function (data) {
                                 $.ligerDialog.tip({
                                     title: '提示信息',
                                     content: data.message
                                 });
                             },
-                            success: function(data) {
+                            success: function (data) {
                                 dialog.close();
 //                                g.reload();
                                 $.ligerDialog.tip({

@@ -2,7 +2,7 @@
    *   dialog  *
 * ------------ */    
 .l-dialog-loading{ background-image:url('../images/ui/loading.gif');}
-.l-dialog{ padding:0; margin:0;font-size:12px; border: 1px solid #AAA;border-radius: 5px;box-shadow: 0 1px 6px rgba(0,0,0,.3);} 
+.l-dialog{ padding:0; margin:0;font-size:12px; border: 1px solid #AAA;border-radius: 5px;box-shadow: 0 1px 6px rgba(0,0,0,.3);}
 .l-dialog td,.l-dialog tr,.l-dialog td div{font-size:12px; } 
 .l-dialog-cc{ background:white;}
 .l-dialog-tl,.l-dialog-tr,.l-dialog-bl,.l-dialog-br,.l-dialog-cl,.l-dialog-cr{width:1px;} 
