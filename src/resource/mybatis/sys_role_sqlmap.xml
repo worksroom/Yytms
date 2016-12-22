@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Role">
+
+    <!-- 添加后端角色 -->
+    <insert id="insert" parameterType="Role" useGeneratedKeys="true"
+            keyColumn="id" keyProperty="id">
+		insert into role( roleName,type,createtime )values( #{roleName},#{type},#{createtime} )
+	</insert>
+
+
+    <!-- 修改角色 -->
+    <update id="update" parameterType="Role">
+		update role set roleName=#{roleName},type=#{type} where id=#{id}
+	</update>
+
+    <!-- 修改角色名称 -->
+    <update id="update_name" parameterType="Role">
+		update role set roleName=#{roleName} where id=#{id}
+	</update>
+
+
+    <!-- 删除角色 -->
+    <delete id="delete" parameterType="int">
+		delete from role where id=#{id}
+	</delete>
+
+    <select id="queryRolebyUser" parameterType="String" resultType="Role">
+ 	    select * from role where id in (select roleid from userRole where uid = #{uid})
+ 	</select>
+
+    <!--查询所有的数据-->
+    <select id="selectAll" resultType="Role">
+    select * from role
+ </select>
+
+    <!--查询所有的数据总记录数-->
+    <select id="select_all_count" resultType="int">
+    select count(1)  from role
+ </select>
+
+    <!--查询单个角色的数据-->
+    <select id="select" resultType="Role" parameterType="int">
+  select * from role where id = #{id}
+ </select>
+
+    <!-- 动态sql -->
+    <sql id="sql_count">
+   select count(1)
+ </sql>
+    <sql id="sql_select">
+   select *
+ </sql>
+    <sql id="sql_where">
+        from role
+        <where>
+            <if test="id!=null">
+                id = #{id}
+            </if>
+
+            <if test="like_roleName!=null">
+                AND roleName like '%${like_roleName}%'
+            </if>
+            <if test="roleName!=null">
+                AND roleName = #{roleName}
+            </if>
+            <if test="type">
+                AND type = #{type}
+            </if>
+        </where>
+    </sql>
+    <sql id="sql_where_1">
+        <if test="cols!=null">ORDER BY #{cols}</if>
+    </sql>
+
+    <select id="findByParams_count" parameterType="Map" resultType="int">
+        <include refid="sql_count"/>
+        <include refid="sql_where"/>
+    </select>
+    <select id="findByParams" parameterType="Map" resultType="Role">
+        <include refid="sql_select"/>
+        <include refid="sql_where"/>
+        <include refid="sql_where_1"/>
+    </select>
+
+</mapper>

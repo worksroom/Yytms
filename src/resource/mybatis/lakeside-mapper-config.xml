@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <setting name="useGeneratedKeys" value="true"/>
+        <setting name="logPrefix" value="database.game"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <typeAlias alias="SysUser" type="com.youguu.user.pojo.SysUser"/>
+        <typeAlias alias="Parameter" type="com.youguu.user.pojo.Parameter"/>
+        <typeAlias alias="Role" type="com.youguu.user.pojo.Role"/>
+        <typeAlias alias="RoleAcl" type="com.youguu.user.pojo.RoleAcl"/>
+        <typeAlias alias="UserRole" type="com.youguu.user.pojo.UserRole"/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.youguu.core.dao.StatementInterceptor"/>
+        <plugin interceptor="com.youguu.core.dao.ResultSetInterceptor"/>
+    </plugins>
+
+    <mappers>
+        <mapper resource="mybatis/sys_user_sqlmap.xml"/>
+        <mapper resource="mybatis/sys_parameter_sqlmap.xml"/>
+        <mapper resource="mybatis/sys_role_sqlmap.xml"/>
+        <mapper resource="mybatis/sys_roleacl_sqlmap.xml"/>
+        <mapper resource="mybatis/sys_userrole_sqlmap.xml"/>
+    </mappers>
+
+</configuration>

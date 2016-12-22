@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+          
+<struts-config>
+	<form-beans />
+	<global-exceptions />
+	<global-forwards />
+	<action-mappings>
+		<action parameter="method" path="/loginAction" scope="request" type="com.youguu.user.action.LoginAction"/>
+		<action parameter="method" path="/manager/sysUser" scope="request" type="com.youguu.user.action.SysUserAction" validate="false"/>
+		<action parameter="method" path="/manager/sysMenu" scope="request" type="com.youguu.user.action.SysMenuAction" validate="false"/>
+		<action parameter="method" path="/manager/sysRole" scope="request" type="com.youguu.user.action.SysRoleAction" validate="false"/>
+	</action-mappings>
+	
+	<controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor"/>
+	
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+   		<set-property property="contextConfigLocation" value="/WEB-INF/app.xml"/>
+ 	</plug-in>
+ 	
+</struts-config>
+

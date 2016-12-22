@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserRole">
+
+    <!-- 添加后端用户角色 -->
+    <insert id="insert" parameterType="UserRole">
+		insert into userRole(
+			uid,roleid
+		)values(
+			#{uid},#{roleid}
+		)
+				
+	</insert>
+
+
+    <!-- 删除用户角色 -->
+    <delete id="delete" parameterType="UserRole">
+		delete from userRole where uid=#{uid} and roleid = #{roleid}
+	</delete>
+
+
+    <!-- 删除用户所有角色 -->
+    <delete id="deleteUserRolebyUserId" parameterType="String">
+		delete from userRole where uid=#{uid}
+	</delete>
+
+    <!-- 删除角色下的所有用户 -->
+    <delete id="deleteUserRolebyRoleId" parameterType="int">
+		delete from userRole where roleid = #{roleid}
+	</delete>
+
+	<select id="findUserByRoleid" parameterType="int" resultType="String">
+		select uid from userRole where roleid = #{roleId}
+	</select>
+</mapper>

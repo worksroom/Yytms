@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RoleAcl">
+
+    <!-- 添加后端角色权限 -->
+    <insert id="insert" parameterType="RoleAcl">
+		insert into roleAcl(
+			roleId,aclid,type
+		)values(
+			#{roleId},#{aclId},#{type}
+		)		
+	</insert>
+
+
+    <!-- 删除角色权限 -->
+    <delete id="delete" parameterType="RoleAcl">
+		delete from roleAcl where roleid=#{roleId} and aclid=#{aclId}
+	</delete>
+
+    <!-- 删除角色所有的权限 -->
+    <delete id="deleteByRole" parameterType="Map">
+        delete from roleAcl where roleid=#{roleid}
+        <if test="type!=null">
+            AND type in (${type})
+        </if>
+    </delete>
+
+    <!--查询单个角色的所有权限-->
+    <select id="selectByRole" resultType="String" parameterType="int">
+	  select aclid from roleAcl where roleid = #{roleId}
+	 </select>
+
+    <!--查询单个角色的某种类型的所有权限-->
+    <select id="selectByRoleType" resultType="RoleAcl" parameterType="RoleAcl">
+	  select * from roleAcl where roleid = #{roleId} and type = #{type}
+	 </select>
+
+    <!--查询单个角色的某几种类型的所有权限-->
+    <select id="selectByRoleTypes" resultType="RoleAcl" parameterType="Map">
+	  select * from roleAcl where roleid = #{roleid} and type in (${type})
+	 </select>
+
+    <!--查询单个用户的所有权限-->
+    <select id="selectByUid" resultType="RoleAcl" parameterType="String">
+	 
+	 	select * from roleAcl where roleid in (select roleid from userRole where uid = #{uid} )
+
+	 </select>
+
+    <!--查询单个用户某种的所有权限-->
+    <select id="selectByUidType" resultType="RoleAcl" parameterType="Map">
+	 
+	 	select * from roleAcl where type = #{type} and roleid in (select roleid from userRole where uid = #{uid})
+
+	 </select>
+
+    <!--查询单个用户某几种种的所有权限-->
+    <select id="selectByUidTypes" resultType="RoleAcl" parameterType="Map">
+	 
+	 	select * from roleAcl where type in (#{type}) and roleid in (select roleid from userRole where uid = #{uid})
+
+	 </select>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SysUser">
+
+    <resultMap type="SysUser" id="sysUserResultMap">
+        <result property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userLoginName" column="user_login_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userTel" column="user_tel"/>
+        <result property="userQq" column="user_qq"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userAddress" column="user_address"/>
+        <result property="userCurrentAddress" column="user_current_address"/>
+        <result property="userBirthday" column="user_birthday"/>
+        <result property="userLoginTime" column="user_login_time"/>
+        <result property="userLoginCount" column="user_login_count"/>
+        <result property="userUpdatedTime" column="user_updated_time"/>
+        <result property="userUpdator" column="user_updator"/>
+        <result property="userCreatedTime" column="user_created_time"/>
+        <result property="userCreator" column="user_creator"/>
+        <result property="userFreezeFlag" column="user_freeze_flag"/>
+        <result property="userDelFlag" column="user_del_flag"/>
+
+    </resultMap>
+
+    <insert id="insert" parameterType="SysUser">
+		insert into sys_user(
+			user_name,user_login_name,user_password,user_tel,user_qq,user_email,user_address,user_current_address,user_birthday,user_login_count,user_created_time,user_creator,user_del_flag,user_freeze_flag
+		)values(
+			#{userName},#{userLoginName},#{userPassword},#{userTel},#{userQq},#{userEmail},#{userAddress},#{userCurrentAddress},#{userBirthday},#{userLoginCount},#{userCreatedTime},#{userCreator},#{userDelFlag},#{userFreezeFlag}
+		)
+	</insert>
+
+    <update id="update" parameterType="SysUser">
+		update sys_user set user_name=#{userName},user_tel=#{userTel},user_qq=#{userQq},user_email=#{userEmail},user_address=#{userAddress},user_current_address=#{userCurrentAddress},user_birthday=#{userBirthday},
+		 user_updated_time=#{userUpdatedTime},user_updator=#{userUpdator}  where  user_login_name=#{userLoginName}
+	</update>
+
+    <delete id="deleteByLoginName" parameterType="String">
+		delete from sys_user where user_login_name = #{userLoginName}
+	</delete>
+
+    <select id="findByUserLoginName" resultMap="sysUserResultMap" parameterType="String">
+		select id,user_name,user_login_name,user_password,user_tel,user_qq,user_email,user_address,user_current_address,user_birthday,user_login_count,user_updated_time,user_updator,user_created_time,user_creator,user_del_flag,user_freeze_flag from sys_user where user_login_name=#{userLoginName}
+	</select>
+
+    <update id="freezeUser" parameterType="Map">
+        update sys_user set user_freeze_flag=#{userFreezeFlag}  where  user_login_name=#{userLoginName}
+    </update>
+
+    <update id="resetPwd" parameterType="Map">
+        update sys_user set user_password=#{userPassword}  where  user_login_name=#{userLoginName}
+    </update>
+
+    <update id="updateLoginTime" parameterType="Map">
+        update sys_user set user_login_count=user_login_count+1,user_login_time=#{userLoginTime}  where  user_login_name=#{userLoginName}
+    </update>
+
+    <!-- 动态sql -->
+    <sql id="sql_count">
+		select count(1)
+	</sql>
+    <sql id="sql_select">
+		select id,user_name,user_login_name,user_password,user_tel,user_qq,user_email,user_address,user_current_address,user_birthday,user_login_count,user_updated_time,user_updator,user_created_time,user_creator,user_del_flag,user_freeze_flag
+	</sql>
+    <sql id="sql_where">
+        from sys_user where 1=1
+        <if test="userName != null and userName !='' ">
+            AND user_name = #{userName}
+        </if>
+        <if test="userLoginName != null and userLoginName != '' ">
+            AND user_login_name =#{userLoginName}
+        </if>
+        <if test="userTel != null and userTel != '' ">
+            AND user_tel =#{userTel}
+        </if>
+    </sql>
+    <sql id="sql_order">
+            ORDER BY user_created_time
+    </sql>
+
+    <select id="findPageSysUser_count" parameterType="Map" resultType="int">
+        <include refid="sql_count"/>
+        <include refid="sql_where"/>
+    </select>
+    <select id="findPageSysUser" parameterType="Map" resultMap="sysUserResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where"/>
+        <include refid="sql_order"/>
+    </select>
+
+</mapper>
