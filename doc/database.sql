@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50172
 File Encoding         : 65001
 
-Date: 2016-12-22 14:17:01
+Date: 2016-12-22 18:05:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,9 +55,15 @@ INSERT INTO `parameter` VALUES ('0002000100020006', '000200010002', '关联用�
 INSERT INTO `parameter` VALUES ('00020001001', '00020001', '用户权限管理', null, '2016-12-22 12:50:01', '99990001', '', '', '');
 INSERT INTO `parameter` VALUES ('00020002', '0002', '系统管理', '', '2015-08-03 17:01:20', '99990001', '', '', 'sys');
 INSERT INTO `parameter` VALUES ('000200020001', '00020002', '模块设置', null, '2016-12-21 16:23:31', '99990001', '', '', null);
-INSERT INTO `parameter` VALUES ('0002000200010001', '000200020001', '模块管理', 'manager/user/moduleList.jsp', '2016-12-21 16:24:17', '99990001', '', '', null);
+INSERT INTO `parameter` VALUES ('0002000200010001', '000200020001', '模块管理', 'manager/user/moduleList.jsp', '2016-12-21 16:24:17', '99990001', '', '', 'config');
 INSERT INTO `parameter` VALUES ('00020002000100010001', '0002000200010001', '添加', 'add', '2016-12-21 16:24:43', '99990002', '', '', null);
-INSERT INTO `parameter` VALUES ('0002000200010002', '000200020001', '参数配置', 'http://www.baidu.com', '2016-12-22 11:21:09', '99990001', null, '', null);
+INSERT INTO `parameter` VALUES ('00020002000100010002', '0002000200010001', '添加按钮', 'addBtn', '2016-12-22 16:24:00', '99990002', '', '', '');
+INSERT INTO `parameter` VALUES ('00020002000100010003', '0002000200010001', '增加同级节点', 'appendToCurrentNodeDown', '2016-12-23 16:24:00', '99990002', '', '', '');
+INSERT INTO `parameter` VALUES ('00020002000100010004', '0002000200010001', '修改', 'update', '2016-12-24 16:24:00', '99990002', '', '', '');
+INSERT INTO `parameter` VALUES ('00020002000100010005', '0002000200010001', '升级', 'upgrade', '2016-12-25 16:24:00', '99990002', '', '', '');
+INSERT INTO `parameter` VALUES ('00020002000100010006', '0002000200010001', '降级', 'demotion', '2016-12-26 16:24:00', '99990002', '', '', '');
+INSERT INTO `parameter` VALUES ('00020002000100010007', '0002000200010001', '伸/缩节点', 'toggle', '2016-12-27 16:24:00', '99990002', '', '', '');
+INSERT INTO `parameter` VALUES ('00020002000100010008', '0002000200010001', '删除', 'delete', '2016-12-28 16:24:00', '99990002', '', '', '');
 
 -- ----------------------------
 -- Table structure for role
@@ -241,7 +247,17 @@ INSERT INTO `roleacl` VALUES ('3', '0002000100020003', '99990002', '0000-00-00 0
 INSERT INTO `roleacl` VALUES ('3', '0002000100020004', '99990002', '0000-00-00 00:00:00');
 INSERT INTO `roleacl` VALUES ('3', '0002000100020005', '99990002', '0000-00-00 00:00:00');
 INSERT INTO `roleacl` VALUES ('3', '0002000100020006', '99990002', '0000-00-00 00:00:00');
-INSERT INTO `roleacl` VALUES ('3', '0002000100020007', '99990002', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '00020002', '99990001', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '000200020001', '99990001', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '0002000200010001', '99990001', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '00020002000100010001', '99990002', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '00020002000100010002', '99990002', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '00020002000100010003', '99990002', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '00020002000100010004', '99990002', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '00020002000100010005', '99990002', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '00020002000100010006', '99990002', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '00020002000100010007', '99990002', '0000-00-00 00:00:00');
+INSERT INTO `roleacl` VALUES ('3', '00020002000100010008', '99990002', '0000-00-00 00:00:00');
 INSERT INTO `roleacl` VALUES ('4', '0002', '-1', '0000-00-00 00:00:00');
 INSERT INTO `roleacl` VALUES ('4', '00020001', '99990001', '0000-00-00 00:00:00');
 INSERT INTO `roleacl` VALUES ('4', '000200010001', '99990001', '0000-00-00 00:00:00');
@@ -286,7 +302,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '管理员', 'admin', 'admin', null, null, null, null, null, null, '2016-12-22 14:14:38', '143', null, null, null, null, null, '0');
+INSERT INTO `sys_user` VALUES ('1', '管理员', 'admin', 'admin', null, null, null, null, null, null, '2016-12-22 17:08:46', '166', null, null, null, null, null, '0');
 INSERT INTO `sys_user` VALUES ('2', '张三', 'zhangsan', '111111', '18801156796', '11112222', '', '', '', '2016-12-06', null, '0', null, null, '2016-12-20 23:07:07', 'admin', '0', '0');
 INSERT INTO `sys_user` VALUES ('3', '王五', 'wangwu', '111111', '18801156796', '11112222', null, null, null, null, null, '0', null, null, null, null, null, '0');
 INSERT INTO `sys_user` VALUES ('4', '王五2', 'wangwu2', '111111', '18801156796', '11112222', '', '', '', '2016-12-19', '2016-12-20 23:12:50', '0', '2016-12-20 23:13:02', '', '2016-12-20 23:13:06', '', null, '0');
