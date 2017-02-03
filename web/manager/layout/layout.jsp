@@ -174,8 +174,6 @@
     <script type="text/javascript">
         var tab = null;
         var accordion = null;
-        var tree = null;
-        var tree2 = null;
         var tabItems = [];
         var addChangePassword = "changePassword";
 

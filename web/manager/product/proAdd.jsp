@@ -1,16 +1,13 @@
-<%@ page import="com.youguu.core.util.ParamUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-
-    String parentId = ParamUtil.CheckParam(request.getParameter("id"), "");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <base href="<%=basePath%>">
-    <title>树控件 - 支持拖拽</title>
+    <title>添加角色</title>
     <script src="resources/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
     <link href="resources/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css">
     <script src="resources/ligerUI/js/core/base.js" type="text/javascript"></script>
@@ -18,52 +15,34 @@
 
     <script type="text/javascript">
         var form;
+        var dialog = frameElement.dialog;
+
         $(function () {
             //创建表单结构
             form = $("#form2").ligerForm({
                 inputWidth: 170, labelWidth: 90, space: 40,
                 fields: [
                     {
-                        display: "父节点ID",
-                        name: "parentId",
+                        display: "角色名称",
+                        name: "roleName",
                         newline: true,
                         type: "text"
                     },
                     {
-                        display: "节点ID",
-                        name: "id",
-                        newline: false,
-                        type: "text"
-                    },
-                    {
-                        display: "节点名称",
-                        name: "name",
-                        newline: true,
-                        type: "text"
-                    },
-                    {
-                        display: "节点类别 ",
+                        display: "角色状态 ",
                         name: "type",
-                        newline: false,
+                        newline: true,
                         type: "select",
-                        comboboxName: "CategoryName",
+                        comboboxName: "roleCombo",
                         options: {data: [
-                            { id: '99990001', value: '99990001', text: '菜单' },
-                            { id: '99990002', value: '99990002', text: '动作' }
+                            {id: '1', value: '1', text: '正常' },
+                            {id: '0', value: '0', text: '冻结' }
                         ]}
-                    },
-                    {display: "跳转地址 ", name: "value", newline: true, type: "text", width: 470},
-                    {display: "扩展2", name: "exp2", newline: true, type: "text"}
+                    }
                 ]
             });
-
-            form.setData({
-                parentId: '<%=parentId %>'
-            });
-
-            form.setEnabled("parentId", false);
-
         });
+
 
         function submitform() {
             return form.getData();

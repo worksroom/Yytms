@@ -52,7 +52,7 @@
                             { id: '99990002', value: '99990002', text: '动作' }
                         ]}
                     },
-                    {display: "跳转地址 ", name: "url", newline: true, type: "text", width: 470},
+                    {display: "跳转地址 ", name: "value", newline: true, type: "text", width: 470},
                     {display: "扩展2", name: "exp2", newline: true, type: "text"}
                 ]
             });

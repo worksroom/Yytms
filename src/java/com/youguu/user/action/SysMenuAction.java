@@ -204,7 +204,7 @@ public class SysMenuAction extends DispatchAction {
         String id = ParamUtil.CheckParam(request.getParameter("id"), "");
         String name = ParamUtil.CheckParam(request.getParameter("name"), "");
         String type = ParamUtil.CheckParam(request.getParameter("type"), "");
-        String url = ParamUtil.CheckParam(request.getParameter("url"), "");
+        String value = ParamUtil.CheckParam(request.getParameter("value"), "");
         String exp2 = ParamUtil.CheckParam(request.getParameter("exp2"), "");
 
         Parameter p = new Parameter();
@@ -212,7 +212,7 @@ public class SysMenuAction extends DispatchAction {
         p.setParentId(parentId);
         p.setName(name);
         p.setCreatetime(new Date());
-        p.setValue(url);
+        p.setValue(value);
         p.setExp2(exp2);
         p.setType(type);
 
@@ -263,7 +263,7 @@ public class SysMenuAction extends DispatchAction {
         String id = ParamUtil.CheckParam(request.getParameter("id"), "");
         String name = ParamUtil.CheckParam(request.getParameter("name"), "");
         String type = ParamUtil.CheckParam(request.getParameter("type"), "");
-        String url = ParamUtil.CheckParam(request.getParameter("url"), "");
+        String value = ParamUtil.CheckParam(request.getParameter("value"), "");
         String exp2 = ParamUtil.CheckParam(request.getParameter("exp2"), "");
 
         Parameter p = parameterService.queryId(id);
@@ -271,7 +271,7 @@ public class SysMenuAction extends DispatchAction {
         p.setParentId(parentId);
         p.setName(name);
         p.setCreatetime(new Date());
-        p.setValue(url);
+        p.setValue(value);
         p.setExp2(exp2);
         p.setType(type);
         int dbFlag = parameterService.update(p);

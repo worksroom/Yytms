@@ -12,6 +12,8 @@
 		<action parameter="method" path="/manager/sysUser" scope="request" type="com.youguu.user.action.SysUserAction" validate="false"/>
 		<action parameter="method" path="/manager/sysMenu" scope="request" type="com.youguu.user.action.SysMenuAction" validate="false"/>
 		<action parameter="method" path="/manager/sysRole" scope="request" type="com.youguu.user.action.SysRoleAction" validate="false"/>
+
+		<action parameter="method" path="/manager/productCategory" scope="request" type="com.youguu.product.ProductCategoryAction" validate="false"/>
 	</action-mappings>
 	
 	<controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor"/>
