@@ -7,13 +7,17 @@
 <%
     String menuId = ParamUtil.CheckParam(request.getParameter("menuId"),"");
 
+    boolean flag = false;
+
     StringBuffer toolbar = new StringBuffer("");
-    toolbar.append("{");
-    toolbar.append("items: [");
 
     if(!"".equals(menuId)){
         List<Parameter> list = ParameterUtil.getParameterParentList(menuId);
         if(list!=null){
+
+            toolbar.append("{");
+            toolbar.append("items: [");
+
             for(int i=0;i<list.size();i++){
                 Parameter p = list.get(i);
                 String aclCode = p.getId();
@@ -23,6 +27,8 @@
                     continue;
                 }
 
+                flag = true;
+
                 if(i==(list.size()-1)){
                     toolbar.append("{text: '" + p.getName() + "', click: " + p.getValue() + "Data, icon: '" + p.getValue() + "'}");
                 } else {
@@ -30,14 +36,18 @@
                     toolbar.append("{line: true},");
                 }
             }
+
+            toolbar.append("]");
+            toolbar.append("}");
+
+
         }
-
-
     }
 
-    toolbar.append("]");
-    toolbar.append("}");
-
-    out.print(toolbar);
+    if(flag){
+        out.print(toolbar);
+    } else{
+        out.print("null");
+    }
 
 %>
