@@ -16,7 +16,14 @@
 		<action parameter="method" path="/manager/seller" scope="request" type="com.youguu.customer.action.SellerAction" validate="false"/>
 		<action parameter="method" path="/manager/customer" scope="request" type="com.youguu.customer.action.CustomerAction" validate="false"/>
 
-		<action parameter="method" path="/manager/productCategory" scope="request" type="com.youguu.product.ProductCategoryAction" validate="false"/>
+
+
+		<action parameter="method" path="/manager/productCategory" scope="request" type="com.youguu.product.action.ProductCategoryAction" validate="false"/>
+		<action parameter="method" path="/manager/productCategoryPro" scope="request" type="com.youguu.product.action.ProductCategoryProAction" validate="false"/>
+		<action parameter="method" path="/manager/productCategoryProValue" scope="request" type="com.youguu.product.action.ProductCategoryProValueAction" validate="false"/>
+
+
+
 	</action-mappings>
 	
 	<controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor"/>

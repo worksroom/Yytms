@@ -1,4 +1,4 @@
-package com.youguu.product;
+package com.youguu.product.action;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

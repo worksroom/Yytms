@@ -18,6 +18,7 @@
         var groupicon = "resources/ligerUI/skins/icons/communication.gif";
         var form;
         var manager;
+        var grid;
         var dialog = frameElement.dialog;
 
         $(function () {
@@ -68,10 +69,92 @@
                 },
                 onSelect: onSelectNode
             });
+
+            grid = $("#maingrid").ligerGrid({
+                checkbox: true,
+                columns: [
+                    {display: '属性ID', name: 'id', align: 'left', width: 60, render: function (item) {
+                        var html = "<a href='javascript:void(0)' onclick=addProData(" + item.id + ")>";
+                            if (item.id)
+                                html += item.id;
+                            html += "</a>";
+                            return html;
+                        }
+                    },
+                    {display: '属性名称', name: 'name', align: 'left',editor: { type: 'text' }},
+                    {display: '类别ID', name: 'classId', minWidth: 60,editor: { type: 'text' }},
+                    {display: '类型', name: 'type', minWidth: 60,editor: { type: 'text' }},
+                    {display: '是否必须', name: 'isNeed', minWidth: 100,editor: { type: 'text' }},
+                    {display: '是否搜索', name: 'isSearch', minWidth: 100,editor: { type: 'text' }},
+                    {display: '排序', name: 'rank', minWidth: 100,editor: { type: 'text' }},
+                    {
+                        display: '操作', isSort: false, width: 120, render: function (rowdata, rowindex, value){
+                            var h = "";
+                            if (!rowdata._editing) {
+                                h += "<a href='javascript:beginEdit(" + rowindex + ")'>修改</a> ";
+                                h += "<a href='javascript:deleteRow(" + rowindex + ")'>删除</a> ";
+                            } else {
+                                h += "<a href='javascript:endEdit(" + rowindex + ")'>提交</a> ";
+                                h += "<a href='javascript:cancelEdit(" + rowindex + ")'>取消</a> ";
+                            }
+                            return h;
+                        }
+                    },
+                    {display: '创建时间', name: 'createTime', minWidth: 140},
+                    {display: '修改时间', name: 'updateTime', minWidth: 140}
+                ],
+                dataAction: 'server',
+                url: 'manager/productCategoryPro.do?method=proList',
+                pageSize: 20,
+                usePager: false,
+                rownumbers: true,
+                width: '100%',
+                height: '100%',
+                enabledEdit: true, clickToEdit: false, isScroll: false,
+                toolbar: {
+                    items: [
+                        { text: '增加行', click: addNewRow, icon: 'add' },
+                        { text: '保存数据', click: saveData, icon: 'add' }
+                    ]
+                }
+
+            });
         });
+
+        function beginEdit(rowid) {
+            grid.beginEdit(rowid);
+        }
+        function cancelEdit(rowid) {
+            grid.cancelEdit(rowid);
+        }
+        function endEdit(rowid) {
+            grid.endEdit(rowid);
+        }
+
+        function deleteRow(rowid) {
+            if (confirm('确定删除?')) {
+                grid.deleteRow(rowid);
+            }
+        }
+        function addNewRow(){
+            grid.addEditRow();
+        }
+
+        function saveData(){
+            var data = grid.getData();
+            alert(JSON.stringify(data));
+        }
+
 
         function onSelectNode(node){
             loadData(node.data.id);
+
+            $.ligerDialog.waitting('数据查询中,请稍候...');
+//            var manager = $("#maingrid").ligerGetGridManager();
+
+            grid._setUrl("manager/productCategoryPro.do?method=proList&classId=" + node.data.id);
+            grid.loadData(true);
+            $.ligerDialog.closeWaitting();
         }
 
         function loadData(id){
@@ -141,9 +224,9 @@
             return form.getData();
         }
 
-        function addProData() {
+        function addProData(proId) {
             $.ligerDialog.open({
-                url: 'manager/product/proAdd.jsp', height: 400, width: 600, buttons: [{
+                url: 'manager/product/proAdd.jsp?proId='+proId, height: 500, width: 1000, buttons: [{
                     text: '确定', onclick: function (item, dialog) {
                         var formData = dialog.frame.submitform();
                         alert(JSON2.stringify(formData));
@@ -198,7 +281,9 @@
                     <img id="userheadimg" src="http://img.sj33.cn/uploads/allimg/201003/20100303234701377.jpg" onerror="noheadimg()"
                          style="border-radius: 4px; box-shadow: 1px 1px 3px #111; width: 120px; height: 120px; margin-left: 5px; background: #d2d2f2; border: 3px solid #fff; behavior: url(../css/pie.htc);"/>
                 </div>
+                <div id="maingrid" style="float: left;margin: 5px;" ></div>
             </div>
+
 
         </div>
     </div>
