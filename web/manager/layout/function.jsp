@@ -30,9 +30,9 @@
                 flag = true;
 
                 if(i==(list.size()-1)){
-                    toolbar.append("{text: '" + p.getName() + "', click: " + p.getValue() + "Data, icon: '" + p.getValue() + "'}");
+                    toolbar.append("{text: '" + p.getName() + "', click: " + p.getValue() + "Data, icon: '" + p.getIcon() + "'}");
                 } else {
-                    toolbar.append("{text: '" + p.getName() + "', click: " + p.getValue() + "Data, icon: '" + p.getValue() + "'},");
+                    toolbar.append("{text: '" + p.getName() + "', click: " + p.getValue() + "Data, icon: '" + p.getIcon() + "'},");
                     toolbar.append("{line: true},");
                 }
             }

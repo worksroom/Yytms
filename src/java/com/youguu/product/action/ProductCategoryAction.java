@@ -203,6 +203,14 @@ public class ProductCategoryAction extends DispatchAction {
         return null;
     }
 
+    /**
+     * 删除商品类别
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     */
     public ActionForward deleteProductCategory(ActionMapping mapping,
                                       ActionForm form, HttpServletRequest request,
                                       HttpServletResponse response) {

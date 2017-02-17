@@ -4,9 +4,13 @@
           "http://struts.apache.org/dtds/struts-config_1_3.dtd">
           
 <struts-config>
-	<form-beans />
+	<form-beans>
+		<form-bean name="FileUploadForm" type="com.youguu.demo.action.FileUploadForm"/>
+	</form-beans>
+
 	<global-exceptions />
 	<global-forwards />
+
 	<action-mappings>
 		<action parameter="method" path="/loginAction" scope="request" type="com.youguu.user.action.LoginAction"/>
 		<action parameter="method" path="/manager/sysUser" scope="request" type="com.youguu.user.action.SysUserAction" validate="false"/>
@@ -21,8 +25,13 @@
 		<action parameter="method" path="/manager/productCategory" scope="request" type="com.youguu.product.action.ProductCategoryAction" validate="false"/>
 		<action parameter="method" path="/manager/productCategoryPro" scope="request" type="com.youguu.product.action.ProductCategoryProAction" validate="false"/>
 		<action parameter="method" path="/manager/productCategoryProValue" scope="request" type="com.youguu.product.action.ProductCategoryProValueAction" validate="false"/>
+		<action parameter="method" path="/manager/goods" scope="request" type="com.youguu.product.action.MallGoodsAction" validate="false"/>
+		<action parameter="method" path="/manager/shop" scope="request" type="com.youguu.product.action.UserShopAction" validate="false"/>
+		<action parameter="method" path="/manager/index" scope="request" type="com.youguu.product.action.MallIndexAction" validate="false"/>
 
+		<action parameter="method" path="/manager/swfupload" scope="request" type="com.youguu.product.action.SwfUploadAction" validate="false"/>
 
+		<action parameter="method" path="/manager/demo/cropper" scope="request" type="com.youguu.demo.action.CropperAction" validate="false" name="FileUploadForm"/>
 
 	</action-mappings>
 	
