@@ -190,22 +190,13 @@ public class MallIndexAction extends DispatchAction {
         int id = ParamUtil.CheckParam(request.getParameter("id"), 0);
 
         String responseText = null;
-        MallIndex mallIndex = new MallIndex();
-        mallIndex.setId(3);
-        mallIndex.setName("推荐");
-        mallIndex.setRank(1);
-        mallIndex.setStatus(1);
-        mallIndex.setType(1);
-        mallIndex.setUpdateTime(new Date());
-        mallIndex.setCreateTime(new Date());
-
-        mallIndex.setContent("[{\"discount\":\"3\",\"img\":\"3\",\"name\":\"3\",\"price\":\"3\",\"salePrice\":\"3\",\"url\":\"3\"},{\"discount\":\"2\",\"img\":\"2\",\"name\":\"2\",\"price\":\"2\",\"salePrice\":\"2\",\"url\":\"2\"}]");
+        MallIndex mallIndex = productRpcService.getMallIndex(id);
         if(mallIndex!=null){
             responseText = JSONObject.toJSONString(mallIndex);
         } else {
             JSONObject result = new JSONObject();
             result.put("success", false);
-            result.put("message", "用户不存在");
+            result.put("message", "未查询到匹配信息");
             responseText = result.toJSONString();
 
         }
