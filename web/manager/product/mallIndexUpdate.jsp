@@ -53,7 +53,9 @@
                 checkbox: true,
                 columns: [
                     {display: '名称', name: 'name', align: 'left',editor: { type: 'text' }},
-                    {display: '图片地址', name: 'img', minWidth: 60,editor: { type: 'text' }},
+                    {display: '图片地址', name: 'img', minWidth: 100, render: function (rowdata, rowindex, value){
+                        return "<img id='img_"+rowindex+"' onclick='uploadimg("+rowindex+")' src='"+rowdata.img+"' alt='Logo' style='width:80px;height:70px;'>";
+                    }},
                     {display: '跳转链接', name: 'url', minWidth: 60,editor: { type: 'text' }},
                     {display: '原价', name: 'price', minWidth: 100,editor: { type: 'text' }},
                     {display: '折扣价', name: 'salePrice', minWidth: 100,editor: { type: 'text' }},
@@ -72,12 +74,11 @@
                         }
                     }
                 ],
-//                dataAction: 'local',
-//                data: { Rows: [{"discount":"3","img":"3","name":"3","price":"3","salePrice":"3","url":"3"},{"discount":"2","img":"2","name":"2","price":"2","salePrice":"2","url":"2"}]},
                 usePager: false,
                 rownumbers: true,
                 width: '100%',
                 height: '100%',
+                rowHeight: 70,
                 enabledEdit: true, clickToEdit: false, isScroll: false,
                 toolbar: {
                     items: [
@@ -152,7 +153,6 @@
          * 添加属性
          */
         function addNewRow(){
-//            var rowdata = {"classId": form.getData().id};
             grid.addEditRow();
         }
 
@@ -164,6 +164,63 @@
             return grid.getData();
         }
 
+        function uploadimg(id) {
+            top.$.ligerDialog.open({
+                zindex: 9004,
+                width: 800, height: 500,
+                title: '上传头像',
+                url: 'manager/product/uploadImg.jsp?id='+id,
+                buttons: [
+                    {
+                        text: '保存', onclick: function (item, dialog) {
+                        saveheadimg(item, dialog);
+                    }
+                    },
+                    {
+                        text: '关闭', onclick: function (item, dialog) {
+                        dialog.close();
+                    }
+                    }
+                ],
+                isResize: true
+            });
+        }
+
+        function getUrlVar(key, url) {
+            var key = key + "=";
+            var url = (url ? url.substring(url.indexOf("?"), url.indexOf("#") < 0 ? url.length: url.indexOf("#")) : location.search).substring(1);
+            var qa = url.split("&");
+            for (var i = 0; i < qa.length; i++) {
+                var q = qa[i];
+                if (q.indexOf(key) == 0) return q.substring(key.length);
+            }
+            return "";
+        }
+
+        function saveheadimg(item, dialog) {
+            var formData = dialog.frame.submitForm();
+
+            if (formData) {
+                dialog.close();
+                top.$.ligerDialog.waitting('数据保存中,请稍候...');
+
+                $.ajax({
+                    url: "manager/productCategoryProValue.do?method=cutImg", type: "POST",
+                    data: formData,
+                    success: function (responseText) {
+                        if(responseText.success==true){
+                            $("#img_"+getUrlVar("id", formData)+"").attr("src", responseText.url);
+                        }
+
+                        top.$.ligerDialog.closeWaitting();
+                    },
+                    error: function () {
+                        top.$.ligerDialog.closeWaitting();
+                        top.$.ligerDialog.error('操作失败！');
+                    }
+                });
+            }
+        }
     </script>
 
 </head>

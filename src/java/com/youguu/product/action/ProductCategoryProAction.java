@@ -57,7 +57,7 @@ public class ProductCategoryProAction extends DispatchAction {
             }
         }
 
-        String gridJson = LigerUiToGrid.toGridJSON(pageHolder, new String[]{"id","name", "classId", "type", "isNeed", "isSearch", "rank", "createTime", "updateTime"}, null);
+        String gridJson = LigerUiToGrid.toGridJSON(pageHolder, new String[]{"id","name", "classId", "type", "isNeed", "isMultiple", "isSku", "isSearch", "rank", "createTime", "updateTime"}, null);
 
         ResponseUtil.println(response, gridJson);
         return null;

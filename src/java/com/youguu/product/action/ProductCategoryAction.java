@@ -137,6 +137,10 @@ public class ProductCategoryAction extends DispatchAction {
         String responseText = null;
         MallProductCategory p = productRpcService.getMallProductCategory(id);
         if(p!=null){
+            MallProductCategory parentCategory = productRpcService.getMallProductCategory(p.getParentId());
+            if(parentCategory!=null){
+                p.setParentName(parentCategory.getName());
+            }
             responseText = JSONObject.toJSONString(p);
         } else {
             JSONObject result = new JSONObject();

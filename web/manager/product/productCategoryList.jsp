@@ -75,6 +75,8 @@
                 onSuccess: treeLoadFinish
             });
 
+            var selectData = [{ id: 1, text: '是' }, { id: 0, text: '否'}];
+
             grid = $("#maingrid").ligerGrid({
                 checkbox: true,
                 columns: [
@@ -89,8 +91,47 @@
                     {display: '属性名称', name: 'name', align: 'left',editor: { type: 'text' }},
                     {display: '类别ID', name: 'classId', minWidth: 60,editor: { type: 'text' }},
                     {display: '类型', name: 'type', minWidth: 60,editor: { type: 'text' }},
-                    {display: '是否必须', name: 'isNeed', minWidth: 100,editor: { type: 'text' }},
-                    {display: '是否搜索', name: 'isSearch', minWidth: 100,editor: { type: 'text' }},
+                    {
+                        display: '必填', name: 'isNeed', minWidth: 100,
+                        render: function (item) {
+                            if (parseInt(item.isNeed) == 1) return '是';
+                            return '否';
+                        },
+                        editor: {
+                            type: 'select',
+                            data: selectData
+                        }
+                    },
+                    {
+                        display: '多选', name: 'isMultiple', minWidth: 100, render: function (item) {
+                            if (parseInt(item.isMultiple) == 1) return '是';
+                            return '否';
+                        },
+                        editor: {
+                            type: 'select',
+                            data: selectData
+                        }
+                    },
+                    {
+                        display: 'SKU', name: 'isSku', minWidth: 100, render: function (item) {
+                            if (parseInt(item.isSku) == 1) return '是';
+                            return '否';
+                        },
+                        editor: {
+                            type: 'select',
+                            data: selectData
+                        }
+                    },
+                    {
+                        display: '搜索', name: 'isSearch', minWidth: 100, render: function (item) {
+                            if (parseInt(item.isSearch) == 1) return '是';
+                            return '否';
+                        },
+                        editor: {
+                            type: 'select',
+                            data: selectData
+                        }
+                    },
                     {display: '排序', name: 'rank', minWidth: 100,editor: { type: 'text' }},
                     {
                         display: '操作', isSort: false, width: 120, render: function (rowdata, rowindex, value){
@@ -128,46 +169,6 @@
 
         });
 
-        function updatePic(){
-            $.ligerDialog.open({
-                url: 'manager/product/uploadPic.jsp',
-                height: 500,
-                width: 800,
-                buttons: [
-                    {text: '确定', onclick: function (item, dialog) {
-                        var formData = dialog.frame.submitform();
-                        $.ajax({
-                            cache: true,
-                            type: "POST",
-                            url:"manager/goods.do?method=review",
-                            data: formData,
-                            async: false,
-                            error: function(data) {
-                                $.ligerDialog.tip({
-                                    title: '提示信息',
-                                    content: data.message
-                                });
-                            },
-                            success: function(data) {
-                                dialog.close();
-                                grid.reload();
-                                $.ligerDialog.tip({
-                                    title: '提示信息',
-                                    content: data.message
-                                });
-                            }
-                        });
-                    }, cls: 'l-dialog-btn-highlight'
-                    },
-                    {
-                        text: '取消', onclick: function (item, dialog) {
-                        dialog.close();
-                    }
-                    }
-                ],
-                isResize: true
-            });
-        }
 
         function treeLoadFinish(){
             tree.expandAll();
@@ -423,8 +424,9 @@
         }
 
         function addProData(proId) {
+            var node = tree.getSelected();//获取选择的类别节点
             $.ligerDialog.open({
-                url: 'manager/product/productCategoryProValueList.jsp?proId='+proId, height: 500, width: 1000,
+                url: 'manager/product/productCategoryProValueList.jsp?proId='+proId+"&classId="+node.data.id, height: 500, width: 1000,
                 buttons: [
                     {
                         text: '取消', onclick: function (item, dialog) {
