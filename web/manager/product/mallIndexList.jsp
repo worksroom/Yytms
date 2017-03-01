@@ -34,13 +34,31 @@
                 columns: [
                     {display: '碎片ID', name: 'id', align: 'left', width: 60},
                     {display: '排序字段', name: 'rank', align: 'left', width: 100, minWidth: 60},
-                    {display: '碎片类型', name: 'type', minWidth: 60},
+                    {display: '碎片类型', name: 'type', minWidth: 60, render: function (item) {
+                        var statusTxt = "其他"
+                        if(item.status==0){
+                            statusTxt = "单图banner"
+                        } else if(item.status==1){
+                            statusTxt = "文字"
+                        } else if(item.status==2){
+                            statusTxt = "两图区(宣传图)"
+                        } else if(item.status==3){
+                            statusTxt = "两图区(优惠价格)"
+                        } else if(item.status==4){
+                            statusTxt = "三图区(宣传图)"
+                        } else if(item.status==5){
+                            statusTxt = "三图区(商品直达)"
+                        } else {
+                            statusTxt = "其他"
+                        }
+                        return statusTxt;
+                    }},
                     {display: '碎片状态', name: 'status', minWidth: 60, render: function (item) {
                         var statusTxt = "其他"
                         if(item.status==99){
-                            statusTxt = "无效"
+                            statusTxt = "不可用"
                         } else if(item.status==1){
-                            statusTxt = "有效"
+                            statusTxt = "可用"
                         } else {
                             statusTxt = "其他"
                         }
@@ -157,7 +175,7 @@
             var row = grid.getSelectedRow();
             $.ligerDialog.open({
                 url: 'manager/product/mallIndexReview.jsp?id='+row.id+'&name='+encodeURI(encodeURI(row.name))+'&status='+row.status,
-                height: 190,
+                height: 250,
                 width: 320,
                 buttons: [
                     {text: '确定', onclick: function (item, dialog) {

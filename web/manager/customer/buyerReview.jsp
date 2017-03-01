@@ -28,24 +28,27 @@
                         display: "用户ID",
                         name: "userId",
                         newline: true,
-                        type: "text"
+                        type: "text",
+                        readonly: true
                     },
                     {
                         display: "用户姓名",
                         name: "name",
                         newline: false,
-                        type: "text"
+                        type: "text",
+                        readonly: true
                     },
                     {
                         display: "身份证号",
                         name: "cardNumber",
                         newline: true,
-                        type: "text"
+                        type: "text",
+                        readonly: true
                     },
                     {
                         display: "审核状态 ",
                         name: "status",
-                        newline: false,
+                        newline: true,
                         type: "select",
                         comboboxName: "roleCombo",
                         options: {data: [
@@ -68,17 +71,17 @@
                     items : [
                         {
                             title: '身份证正面', fields: [
-                                {display: "正面", width: 500, hideLabel: true, name: "cardFPhoto", newline: false, type: "text", afterContent: "<div><img style='width: 410px;height: 260px;' id='cardFPhoto_img'></img></div>"}
+                                {display: "正面", width: 500, readonly: true, hideLabel: true, name: "cardFPhoto", newline: false, type: "text", afterContent: "<div><img style='width: 410px;height: 260px;' id='cardFPhoto_img'></img></div>"}
                             ]
                         },
                         {
                             title: '身份证反面', fields: [
-                                {display: "正面", width: 500, hideLabel: true, name: "cardBPhoto", newline: false, type: "text", afterContent: "<div><img style='width: 410px;height: 260px;' id='cardBPhoto_img'></img></div>"}
+                                {display: "正面", width: 500, readonly: true, hideLabel: true, name: "cardBPhoto", newline: false, type: "text", afterContent: "<div><img style='width: 410px;height: 260px;' id='cardBPhoto_img'></img></div>"}
                             ]
                         },
                         {
                             title: '本人照片', fields: [
-                            {display: "本人照", width: 500, hideLabel: true, name: "userCardPhoto", newline: false, type: "text", afterContent: "<div><img style='width: 260px;height: 410px;' id='userCardPhoto_img'></img></div>"}
+                            {display: "本人照", width: 500, readonly: true, hideLabel: true, name: "userCardPhoto", newline: false, type: "text", afterContent: "<div><img style='width: 260px;height: 410px;' id='userCardPhoto_img'></img></div>"}
                         ]
                         }
                     ]

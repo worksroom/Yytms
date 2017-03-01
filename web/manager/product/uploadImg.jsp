@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <base href="<%=basePath%>">
-    <title>货品审核</title>
+    <title>上传图片</title>
     <link rel="stylesheet" href="resources/jquery/imgareaselect-default.css" type="text/css">
 
     <script src="resources/jquery/jquery.min.js" type="text/javascript"></script>
@@ -80,7 +80,7 @@
                 // Button Settings
                 button_image_url: "../Images/fancybox/img/button_green.png",
                 button_placeholder_id: "spanButtonPlaceholder",
-                button_text: '<span class="theFont">上传头像</span>',
+                button_text: '<span class="theFont">上传图片</span>',
                 button_text_style: ".theFont { font-size: 12;font-weight:bold;text-align:center;line-height:25px; }",
 
                 button_width: 70,
@@ -120,7 +120,7 @@
                 return;
             }
             else if ($("#x1").val() == "-" || $("#y1").val() == "-" || $("#x2").val() == "-" || $("#y2").val() == "-" || $("#w").val() == "-" || $("#h").val() == "-") {
-                alert("请先选择头像");
+                alert("请先选择图片");
                 return;
             }
             else {

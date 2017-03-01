@@ -43,10 +43,10 @@
                         name: "status",
                         newline: true,
                         type: "select",
-                        comboboxName: "shopCombo",
+                        comboboxName: "statusCombo",
                         options: {data: [
-                            {id: '1', value: '1', text: '有效' },
-                            {id: '99', value: '99', text: '无效' }
+                            {id: '1', value: '1', text: '可用' },
+                            {id: '99', value: '99', text: '不可用' }
                         ]}
                     }
                 ]

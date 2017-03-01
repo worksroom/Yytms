@@ -44,13 +44,37 @@
                     {display: "碎片ID", name: "id", newline: true, type: "hidden"},
                     {display: "碎片名称", name: "name", newline: true, type: "text"},
                     {display: "排序", name: "rank", newline: false, type: "text"},
-                    {display: "类型", name: "type", newline: true, type: "text"},
-                    {display: "碎片状态", name: "status", newline: false}
+                    {
+                        display: "类型",
+                        name: "type",
+                        newline: true,
+                        type: "select",
+                        comboboxName: "typeComboBox",
+                        options: {data: [
+                            {id: '0', value: '0', text: '单图banner' },
+                            {id: '1', value: '1', text: '文字'},
+                            {id: '2', value: '2', text: '两图区(宣传图)'},
+                            {id: '3', value: '3', text: '两图区(优惠价格)'},
+                            {id: '4', value: '4', text: '三图区(宣传图)'},
+                            {id: '5', value: '5', text: '三图区(商品直达)'}
+                        ]}
+                    },
+                    {
+                        display: "碎片状态",
+                        name: "status",
+                        newline: false,
+                        type: "select",
+                        comboboxName: "statusComboBox",
+                        options: {data: [
+                            {id: '99', value: '99', text: '不可用'},
+                            {id: '1', value: '1', text: '可用'}
+                        ]}
+                    }
                 ]
             });
 
             grid = $("#maingrid").ligerGrid({
-                checkbox: true,
+                checkbox: false,
                 columns: [
                     {display: '名称', name: 'name', align: 'left',editor: { type: 'text' }},
                     {display: '图片地址', name: 'img', minWidth: 100, render: function (rowdata, rowindex, value){
@@ -161,6 +185,8 @@
         }
 
         function submitGrid(){
+            var data = grid.getData();
+            alert(JSON.stringify(data));
             return grid.getData();
         }
 
@@ -168,7 +194,7 @@
             top.$.ligerDialog.open({
                 zindex: 9004,
                 width: 800, height: 500,
-                title: '上传头像',
+                title: '上传图片',
                 url: 'manager/product/uploadImg.jsp?id='+id,
                 buttons: [
                     {
@@ -210,6 +236,7 @@
                     success: function (responseText) {
                         if(responseText.success==true){
                             $("#img_"+getUrlVar("id", formData)+"").attr("src", responseText.url);
+                            grid.updateCell(2, responseText.url, getUrlVar("id", formData));
                         }
 
                         top.$.ligerDialog.closeWaitting();

@@ -44,6 +44,30 @@ public class LigerUiToGrid {
         return jsonObject.toJSONString();
     }
 
+    public static String toGridJSON(List<?> list, String[] cols, String[] replaceCols) {
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Total", list.size());
+
+        JSONArray dataArray = new JSONArray();
+
+        int i = 0;
+        for (Object obj : list) {
+            i++;
+
+            // 生成Id属性
+            String id = getPropertyValue(obj, "id");
+            if (id.equals("") || "0".equals(id)) {
+                id = Integer.toString(i);
+            }
+            dataArray.add(getPorpertyValues(id, obj, cols, replaceCols));
+        }
+
+        jsonObject.put("Rows", dataArray);
+
+        return jsonObject.toJSONString();
+    }
+
     public static String getPropertyValue(Object obj, String property) {
         if (property == null || property.trim().equals(""))
             return "";

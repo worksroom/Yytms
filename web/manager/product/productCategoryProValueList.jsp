@@ -30,7 +30,7 @@
                     {display: '属性ID', name: 'classProId', minWidth: 60},
                     {display: '类别ID', name: 'classId', minWidth: 60},
                     {display: '图片地址', name: 'pic', minWidth: 100, render: function (rowdata, rowindex, value){
-                        return "<img id='img_"+rowdata.id+"' onclick='uploadimg("+rowdata.id+")' src='"+rowdata.pic+"' alt='Logo' style='width:80px;height:70px;'>";
+                        return "<img id='img_"+rowindex+"' onclick='uploadimg("+rowindex+")' src='"+rowdata.pic+"' alt='Logo' style='width:80px;height:70px;'>";
                     }},
                     {display: '是否启用', name: 'used', minWidth: 100,editor: { type: 'text' }},
                     {display: '排序', name: 'rank', minWidth: 100,editor: { type: 'text' }},
@@ -184,7 +184,7 @@
             top.$.ligerDialog.open({
                 zindex: 9004,
                 width: 800, height: 500,
-                title: '上传头像',
+                title: '上传图片',
                 url: 'manager/product/uploadImg.jsp?id='+id,
                 buttons: [
                     {
@@ -225,23 +225,8 @@
                     data: formData,
                     success: function (responseText) {
                         if(responseText.success==true){
-//                            $("#pic").attr("value", responseText.url);
-                            alert("id="+getUrlVar("id", formData));
-                            var row = grid.getRow({"id": getUrlVar("id", formData)});
-                            alert("row="+JSON.stringify(row));
-//                            var rowdata = {pic: responseText.url};
                             $("#img_"+getUrlVar("id", formData)+"").attr("src", responseText.url);
-
-//                            var rowdata = grid.getRow(getUrlVar("id", formData));
-
-
-//                            var cellobj = grid.getCellObj(rowdata, 5);
-//                            alert(cellobj);
-//                            alert($(cellobj).val());
-//                            var container = $(cellobj).html("");
-
-//                            rowdata.pic=responseText.url;
-//                            alert(JSON.stringify(rowdata));
+                            grid.updateCell(6, responseText.url, getUrlVar("id", formData));
                         }
 
                         top.$.ligerDialog.closeWaitting();

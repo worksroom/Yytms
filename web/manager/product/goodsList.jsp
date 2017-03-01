@@ -32,7 +32,13 @@
             grid = $("#maingrid").ligerGrid({
                 checkbox: true,
                 columns: [
-                    {display: '货品ID', name: 'id', align: 'left', width: 60},
+                    {display: '货品ID', name: 'id', align: 'left', width: 60, render: function (item) {
+                        var html = "<a href='javascript:void(0)' onclick=showGoodsDetail(" + item.id + ","+item.classId+","+item.shopId+")>";
+                        if (item.id)
+                            html += item.id;
+                        html += "</a>";
+                        return html;
+                    }},
                     {display: '货品名称', name: 'name', align: 'left', width: 100, minWidth: 60},
                     {display: '店铺ID', name: 'shopId', minWidth: 60},
                     {display: '店铺名称', name: 'shopName', minWidth: 60},
@@ -124,6 +130,47 @@
             $(".l-selected").removeClass("l-selected");
         }
 
+
+        function showGoodsDetail(goodsId, classId, shopId){
+            $.ligerDialog.open({
+                url: 'manager/product/showGoodsDetail.jsp?goodsId='+goodsId+"&categoryId="+classId+"&shopId="+shopId,
+                height: 500,
+                width: 910,
+                buttons: [
+                    {text: '确定', onclick: function (item, dialog) {
+                        var formData = dialog.frame.submitForm();
+                        $.ajax({
+                            cache: true,
+                            type: "POST",
+                            url:"manager/goods.do?method=review",
+                            data: formData,
+                            async: false,
+                            error: function(data) {
+                                $.ligerDialog.tip({
+                                    title: '提示信息',
+                                    content: data.message
+                                });
+                            },
+                            success: function(data) {
+                                dialog.close();
+                                grid.reload();
+                                $.ligerDialog.tip({
+                                    title: '提示信息',
+                                    content: data.message
+                                });
+                            }
+                        });
+                    }, cls: 'l-dialog-btn-highlight'
+                    },
+                    {
+                        text: '取消', onclick: function (item, dialog) {
+                        dialog.close();
+                    }
+                    }
+                ],
+                isResize: true
+            });
+        }
 
     </script>
 

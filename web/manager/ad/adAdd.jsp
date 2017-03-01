@@ -80,7 +80,7 @@
             top.$.ligerDialog.open({
                 zindex: 9004,
                 width: 800, height: 500,
-                title: '上传头像',
+                title: '上传图片',
                 url: 'manager/product/uploadImg.jsp?id='+id,
                 buttons: [
                     {

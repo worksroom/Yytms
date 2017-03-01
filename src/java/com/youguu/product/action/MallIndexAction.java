@@ -73,27 +73,31 @@ public class MallIndexAction extends DispatchAction {
                                     HttpServletResponse response) throws ParseException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-
-        String formData = ParamUtil.CheckParam(request.getParameter("formData"), "");
-        String gridData = ParamUtil.CheckParam(request.getParameter("gridData"), "");
-
-
-        MallIndex mallIndex = JSONObject.parseObject(formData, MallIndex.class);
-        mallIndex.setCreateTime(new Date());
-
-        List<MallIndexContent> contentList = JSONArray.parseArray(gridData, MallIndexContent.class);
-
-
         JSONObject result = new JSONObject();
 
-        int dbFlag = productRpcService.addMallIndex(mallIndex, contentList);
-        if(dbFlag>0){
-            result.put("success", true);
-            result.put("message", "保存成功");
-        } else{
+        try{
+            String formData = ParamUtil.CheckParam(request.getParameter("formData"), "");
+            String gridData = ParamUtil.CheckParam(request.getParameter("gridData"), "");
+
+
+            MallIndex mallIndex = JSONObject.parseObject(formData, MallIndex.class);
+            mallIndex.setCreateTime(new Date());
+
+            List<MallIndexContent> contentList = JSONArray.parseArray(gridData, MallIndexContent.class);
+
+            int dbFlag = productRpcService.addMallIndex(mallIndex, contentList);
+            if(dbFlag>0){
+                result.put("success", true);
+                result.put("message", "保存成功");
+            } else{
+                result.put("success", false);
+                result.put("message", "保存失败");
+            }
+        } catch (Exception e){
             result.put("success", false);
-            result.put("message", "保存失败");
+            result.put("message", "系统异常,请联系管理员");
         }
+
         ResponseUtil.println(response, result);
         return null;
     }
@@ -113,26 +117,30 @@ public class MallIndexAction extends DispatchAction {
                                       HttpServletResponse response) throws ParseException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-
-        String formData = ParamUtil.CheckParam(request.getParameter("formData"), "");
-        String gridData = ParamUtil.CheckParam(request.getParameter("gridData"), "");
-
-
-        MallIndex mallIndex = JSONObject.parseObject(formData, MallIndex.class);
-        mallIndex.setCreateTime(new Date());
-
-        List<MallIndexContent> contentList = JSONArray.parseArray(gridData, MallIndexContent.class);
-
-
         JSONObject result = new JSONObject();
 
-        int dbFlag = productRpcService.updateMallIndex(mallIndex, contentList);
-        if(dbFlag>0){
-            result.put("success", true);
-            result.put("message", "修改成功");
-        } else{
+        try{
+            String formData = ParamUtil.CheckParam(request.getParameter("formData"), "");
+            String gridData = ParamUtil.CheckParam(request.getParameter("gridData"), "");
+
+
+            MallIndex mallIndex = JSONObject.parseObject(formData, MallIndex.class);
+            mallIndex.setCreateTime(new Date());
+
+            List<MallIndexContent> contentList = JSONArray.parseArray(gridData, MallIndexContent.class);
+
+
+            int dbFlag = productRpcService.updateMallIndex(mallIndex, contentList);
+            if(dbFlag>0){
+                result.put("success", true);
+                result.put("message", "修改成功");
+            } else{
+                result.put("success", false);
+                result.put("message", "修改失败");
+            }
+        } catch (Exception e){
             result.put("success", false);
-            result.put("message", "修改失败");
+            result.put("message", "系统异常,请联系管理员");
         }
         ResponseUtil.println(response, result);
         return null;

@@ -35,6 +35,7 @@
                     {display: '店铺ID', name: 'id', align: 'left', width: 60},
                     {display: '店铺名称', name: 'name', align: 'left', width: 100, minWidth: 60},
                     {display: '卖家ID', name: 'sellUserId', minWidth: 60},
+                    {display: '卖家用户名', name: 'userName', minWidth: 60},
                     {display: '主营商品', name: 'mainProduct', minWidth: 60},
                     {display: '店铺状态', name: 'status', minWidth: 100, render: function (item) {
                         var statusTxt = "其他"

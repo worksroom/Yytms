@@ -1,0 +1,244 @@
+@charset "utf-8";
+/* CSS Document */
+.swf-ke-icon-multiimage {
+    background-position: 0px -1232px;
+    width: 16px;
+    height: 16px;
+}
+
+.swf-ke-dialog-mask {
+    background-color: #FFF;
+    filter: alpha(opacity=50);
+    opacity: 0.5 !important;
+}
+
+.swf-ke-dialog-upload {
+    width: 650px;
+    height: 520px;
+    position: absolute;
+    z-index: 811213;
+    left: 250px;
+    top: 40px;
+    border: 1px solid #CFCFCF;
+    background-color: #FFF;
+}
+
+.swf-ke-dialog-upload-head {
+    border: 0;
+    margin: 0;
+    padding: 0 10px;
+    background: url(../images/background.png) repeat scroll 0 0 #F0F0EE;
+    border-bottom: 1px solid #CFCFCF;
+    height: 24px;
+    font: 12px/24px "sans serif", tahoma, verdana, helvetica;
+    text-align: left;
+    color: #222;
+    cursor: move;
+}
+
+.swf-ke-dialog-icon-close {
+    display: block;
+    background: url(../images/default.png) no-repeat 0px -688px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    float: right;
+    margin-top: 3px;
+}
+
+.swf-ke-dialog-content {
+    padding: 0px 20px 20px 20px;
+    height: 420px;
+}
+
+.swf-ke-dialog-content-head {
+    margin-bottom: 10px;
+    clear: both;
+}
+
+.swf-ke-dialog-content-error {
+    padding: 0 95px;
+    height: 20px;
+    font: 12px/24px "sans serif", tahoma, verdana, helvetica;
+}
+
+.swf-ke-swfupload-button {
+    height: 23px;
+    line-height: 23px;
+    float: left;
+}
+
+.swf-ke-inline-block {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+}
+
+.swf-ke-swfupload-desc {
+    padding: 0 10px;
+    font: 12px/24px "sans serif", tahoma, verdana, helvetica;
+    height: 23px;
+    line-height: 23px;
+    float: left;
+}
+
+.swf-ke-button-common {
+    background: url(../images/background.png) no-repeat scroll 0 -25px transparent;
+    height: 23px;
+    line-height: 23px;
+    overflow: visible;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+
+}
+
+.swf-ke-button {
+    background-position: right -25px;
+    padding: 0 12px;
+    margin-right: 0;
+    font-family: "sans serif", tahoma, verdana, helvetica;
+    border: 0 none;
+    color: #333;
+    font-size: 12px;
+    left: 2px;
+    text-decoration: none;
+}
+
+.swf-ke-button-outer {
+    background-position: 0 -25px;
+    padding: 0;
+    position: relative;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    margin-right: 20px;
+}
+
+.swf-ke-swfupload-startupload {
+    position: relative;
+    top: 0px;
+    right: 0px;
+    float: right;
+    margin: 0px;
+}
+
+.swf-ke-swfupload-body {
+    text-align: left;
+    overflow: scroll;
+    background-color: white;
+    border-color: #848484 #E0E0E0 #E0E0E0 #848484;
+    border-style: solid;
+    border-width: 1px;
+    width: auto;
+    height: 370px;
+    padding: 5px;
+}
+
+.swf-ke-dialog-footer {
+    font: 12px/1 "sans serif", tahoma, verdana, helvetica;
+    text-align: right;
+    padding: 10px 0 0px 0px;
+    background-color: white;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.swf-ke-dialog-body img {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+}
+
+.swf-ke-swfupload-body .swf-ke-item {
+    width: 100px;
+    margin: 5px;
+    float: left;
+}
+
+.swf-ke-swfupload-body .swf-ke-photo {
+    position: relative;
+    border: 1px solid #DDD;
+    background-color: white;
+    padding: 10px;
+}
+
+.swf-ke-swfupload-body .swf-ke-on {
+    border: 1px solid #5690D2;
+    background-color: #E9EFF6;
+}
+
+.swf-ke-inline-block {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+}
+
+.swf-ke-swfupload-body .swf-ke-delete {
+    display: block;
+    background: url(../images/default.png) no-repeat scroll 0px -686px;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.swf-ke-swfupload-body .swf-ke-status {
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100px;
+    height: 17px;
+}
+
+.swf-ke-progressbar {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.swf-ke-swfupload-body .swf-ke-message {
+    width: 100px;
+    font: 12px/1 "sans serif", tahoma, verdana, helvetica;
+    text-align: center;
+    overflow: hidden;
+    height: 17px;
+}
+
+.swf-ke-swfupload-body .swf-ke-name {
+    width: 100px;
+    font: 12px/1 "sans serif", tahoma, verdana, helvetica;
+    text-align: center;
+    overflow: hidden;
+    height: 14px;
+}
+
+.swf-ke-progressbar-bar {
+    border: 1px solid #6FA5DB;
+    width: 80px;
+    height: 5px;
+    margin: 10px 10px 0 10px;
+    padding: 0;
+}
+
+.swf-ke-progressbar-bar-inner {
+    width: 100%;
+    height: 5px;
+    background-color: #6FA5DB;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.swf-ke-progressbar-percent {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    display: none;
+}

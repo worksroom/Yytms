@@ -88,6 +88,7 @@ img {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd;
+    text-align: left;
 }
 
 .bodytable1 td {
