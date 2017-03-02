@@ -28,6 +28,7 @@
 		<action parameter="method" path="/manager/goods" scope="request" type="com.youguu.product.action.MallGoodsAction" validate="false"/>
 		<action parameter="method" path="/manager/shop" scope="request" type="com.youguu.product.action.UserShopAction" validate="false"/>
 		<action parameter="method" path="/manager/index" scope="request" type="com.youguu.product.action.MallIndexAction" validate="false"/>
+		<action parameter="method" path="/manager/order" scope="request" type="com.youguu.order.action.OrderAction"/>
 
 		<action parameter="method" path="/manager/swfupload" scope="request" type="com.youguu.product.action.SwfUploadAction" validate="false"/>
 
