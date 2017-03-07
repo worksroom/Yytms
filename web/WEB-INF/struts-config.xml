@@ -37,6 +37,7 @@
 
 		<action parameter="method" path="/manager/storeLocation" scope="request" type="com.youguu.product.action.StoreLocationAction"/>
 		<action parameter="method" path="/manager/fareMould" scope="request" type="com.youguu.product.action.FareMouldAction"/>
+		<action parameter="method" path="/manager/info" scope="request" type="com.youguu.info.action.InfoAction"/>
 
 		<action parameter="method" path="/manager/demo/cropper" scope="request" type="com.youguu.demo.action.CropperAction" validate="false" name="FileUploadForm"/>
 
