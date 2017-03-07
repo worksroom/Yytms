@@ -162,14 +162,22 @@ public class ProductCategoryProValueAction extends DispatchAction {
             String targetFileName = new Date().getTime() + "" + new Random().nextInt(10000) + "_" + fileName.substring(fileName.lastIndexOf('.'));
             File targetFile = new File(path, targetFileName);
 
-            File file = new File(path+"/"+fileName);
-            InputStream is = new FileInputStream(file);
-            ImageCut.cut(is, targetFile, x1, y1, w, h);
-            is.close();
+            if(x1==0 || y1==0 || w==0 || h==0){
+                result.put("success", true);
+                result.put("message", "保存成功");
+                result.put("url", "images/"+fileName);
+            } else {
+                File file = new File(path+"/"+fileName);
+                InputStream is = new FileInputStream(file);
+                ImageCut.cut(is, targetFile, x1, y1, w, h);
+                is.close();
+                result.put("success", true);
+                result.put("message", "保存成功");
+                result.put("url", "images/"+targetFileName);
+            }
 
-            result.put("success", true);
-            result.put("message", "保存成功");
-            result.put("url", "images/"+targetFileName);
+
+
         } catch (Exception e){
             result.put("success", false);
             result.put("message", "保存失败");

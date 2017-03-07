@@ -25,12 +25,17 @@
             if (!selection.width || !selection.height)
                 return;
 
+            var picRealWidth = $('#picRealWidth').val();
+            var picRealHeight = $('#picRealHeight').val();
+
             var scaleX = 120 / selection.width;
             var scaleY = 120 / selection.height;
 
             $('#preview1 img').css({
-                width: Math.round(scaleX * $("#photo").width()),
-                height: Math.round(scaleY * $("#photo").height()),
+//                width: Math.round(scaleX * $("#photo").width()),
+//                height: Math.round(scaleY * $("#photo").height()),
+                width: Math.round(scaleX * picRealWidth),
+                height: Math.round(scaleY * picRealHeight),
                 marginLeft: -Math.round(scaleX * selection.x1),
                 marginTop: -Math.round(scaleY * selection.y1)
             });
@@ -87,7 +92,9 @@
                 button_height: 25,
 
 
-                custom_settings: {},
+                custom_settings: {
+
+                },
 
                 // Debug settings
                 debug: false
@@ -100,29 +107,47 @@
         function uploadSuccess(file, serverData) {
             $("#photo").attr("src", "<%=basePath%>" + JSON.parse(serverData).message);
             $('#preview1 img').attr("src", "<%=basePath%>" + JSON.parse(serverData).message);
+        }
 
-            api = $('#photo').imgAreaSelect({
-                instance: true,
-                aspectRatio: '1:1',
-                handles: true,
-                fadeSpeed: 0,
-                onSelectChange: preview,
-                show: true,
-                x1: 50, y1: 50, x2: 170, y2: 170
+        function cut_img(){
+
+            var img = $("#photo");
+            var picRealWidth;
+            var picRealHeight;
+            $("<img/>").attr("src", $(img).attr("src")).load(function () {
+                picRealWidth = this.width;
+                picRealHeight = this.height;
+
+                $('#picRealWidth').val(picRealWidth);
+                $('#picRealHeight').val(picRealHeight);
+
+                api = $('#photo').imgAreaSelect({
+                    instance: true,
+                    aspectRatio: '1:1',
+                    handles: true,
+                    fadeSpeed: 0,
+                    onSelectChange: preview,
+                    show: true,
+                    imageHeight: picRealHeight,
+                    imageWidth: picRealWidth,
+                    x1: 50, y1: 50, x2: 170, y2: 170
+                });
+                preview($("#photo"), {"x1": 50, "y1": 50, "x2": 170, "y2": 170, "width": 120, "height": 120});
             });
-            preview($("#photo"), {"x1": 50, "y1": 50, "x2": 170, "y2": 170, "width": 120, "height": 120});
+
+
         }
 
         function submitForm() {
             var src = $('#preview1 img').attr("src");
-            if (src == '../images/noheadimage.jpg') {
+            if (src == '') {
                 alert("请先上传图片");
                 return;
             }
-            else if ($("#x1").val() == "-" || $("#y1").val() == "-" || $("#x2").val() == "-" || $("#y2").val() == "-" || $("#w").val() == "-" || $("#h").val() == "-") {
-                alert("请先选择图片");
-                return;
-            }
+//            else if ($("#x1").val() == "-" || $("#y1").val() == "-" || $("#x2").val() == "-" || $("#y2").val() == "-" || $("#w").val() == "-" || $("#h").val() == "-") {
+//                alert("请先选择图片");
+//                return;
+//            }
             else {
                 return $("form :input").fieldSerialize();
             }
@@ -153,25 +178,26 @@
             <legend>原图</legend>
             <div style="float: left; width: 500px;">
 
-
-                <div class="frame" style="margin: 0 0.3em; width: 485px; height: 325px; overflow: auto; z-index: 100">
-                    <img id="photo" src="../images/noheadimage.jpg" height="300"/>
-                </div>
-
-
                 <div style="line-height: 21px;">
                     <input type="hidden" id="txtFileName" name="txtFileName"/>
                     <span id="spanButtonPlaceholder"></span>
                 </div>
 
 
+                <div class="frame" style="margin: 0 0.3em; width: 485px; height: 325px; overflow: auto; z-index: 100">
+                    <img id="photo" width="450" height="300"/>
+                </div>
+
+                <div>
+                    <input type="button" value="裁剪" class="uploadify-button" onclick="cut_img();" id="button_cut">
+                </div>
             </div>
 
             <div style="float: left; width: 200px;">
 
                 <div class="frame" style="margin: 0 1em; width: 120px; height: 120px;">
                     <div id="preview1" style="width: 120px; height: 120px; overflow: hidden;">
-                        <img src="../images/noheadimage.jpg" style="width: 120px; height: 120px;"/>
+                        <img style="width: 120px; height: 120px;"/>
                     </div>
                 </div>
 
@@ -182,6 +208,9 @@
                 <input type="hidden" id="y2" name="y2" value="-"/>
                 <input type="hidden" id="w" name="w" value="-"/>
                 <input type="hidden" id="h" name="h" value="-"/>
+
+                <input type="hidden" id="picRealWidth" name="picRealWidth" value="-"/>
+                <input type="hidden" id="picRealHeight" name="picRealHeight" value="-"/>
 
                 <div style="line-height: 30px;">
 

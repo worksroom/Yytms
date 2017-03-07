@@ -186,7 +186,6 @@
 
         function submitGrid(){
             var data = grid.getData();
-            alert(JSON.stringify(data));
             return grid.getData();
         }
 
