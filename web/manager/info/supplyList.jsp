@@ -74,7 +74,7 @@
         function updateData(){
             var row = grid.getSelectedRow();
             $.ligerDialog.open({
-                url: 'manager/ad/adCategoryUpdate.jsp?id='+row.id, height: 200, width: 300, buttons: [
+                url: 'manager/info/supplyUpdate.jsp?id='+row.id, height: 400, width: 600, buttons: [
                     {
                         text: '提交保存', onclick: function (item, dialog) {
                         var formData = dialog.frame.submitform();
@@ -82,7 +82,7 @@
                         $.ajax({
                             cache: true,
                             type: "POST",
-                            url:"manager/adCategory.do?method=updateAdCategory",
+                            url:"manager/info.do?method=updateSupplyInfo",
                             data: formData,
                             async: false,
                             error: function(data) {
@@ -124,7 +124,7 @@
                     $.ajax({
                         cache: true,
                         type: "POST",
-                        url:"manager/adCategory.do?method=deleteAdCategory&ids="+selectIds,
+                        url:"manager/info.do?method=deleteInfo&ids="+selectIds,
                         async: false,
                         error: function(data) {
                             $.ligerDialog.tip({
