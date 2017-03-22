@@ -129,13 +129,13 @@
             </div>
             <div class="panel-c-r">
                 <p>如果遇到系统问题，请联系网络管理员。</p>
-                <p>联系电话：010-87668988</p>
+                <p>联系电话：010-88886666</p>
                 <p>西湖工作室</p>
             </div>
         </div>
         <div class="panel-f"></div>
     </div>
-    <div id="logincopyright">Copyright © 2012 Nexteasy管理系统</div>
+    <div id="logincopyright">Copyright © 2016 印刷耗材管理系统</div>
 
 </div>
 </body>
